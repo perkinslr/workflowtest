@@ -1,8 +1,7 @@
 name: rebuild
 
 on:
-  pull_request:
-  push:
+  workflow_dispatch:
     branches:
       - "main"
 
@@ -22,9 +21,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        branch: test-branch-${{ github.head_ref }}
+        branch: test-branch-${{ github.run_number }}
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
         commit_message: Apply rebuild changes
-        branch: test-branch
+        branch: test-branch-${{ github.run_number }}
