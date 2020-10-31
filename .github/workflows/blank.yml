@@ -30,18 +30,11 @@ jobs:
         
 
 
-    # The local path to the directory where your repository is located. You should use actions/checkout first to set it up
-    # Default: '.'
-    cwd: '$GITHUB_WORKSPACE'
+          cwd: '$GITHUB_WORKSPACE'
 
-    # The message for the commit
-    # Default: 'Commit from GitHub Actions (name of the workflow)'
-    message: 'add timestamp'
+          message: 'add timestamp'
 
-    # The flag used on the pull strategy
-    # Default: '--no-rebase'
-    pull_strategy: '--rebase'
+          pull_strategy: '--rebase'
 
-  env:
-    # This is necessary in order to push a commit to the repo
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
