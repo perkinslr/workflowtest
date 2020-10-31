@@ -22,17 +22,19 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo `date` > $GITHUB_WORKSPACE/timestamp
+        run: echo `date` > /home/runner/work/workflowtest/workflowtest/timestamp
 
       - uses: EndBug/add-and-commit@v5
         with:
-          add: timestamp
+          add: /home/runner/work/workflowtest/workflowtest/timestamp
         
 
 
           cwd: '$GITHUB_WORKSPACE'
 
-          message: 'add timestamp'
+          message: 'add /home/runner/work/workflowtest/workflowtest/timestamp'
+
+          pull_strategy: '--rebase'
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
