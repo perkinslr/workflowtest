@@ -34,7 +34,6 @@ jobs:
 
           message: 'add /home/runner/work/workflowtest/workflowtest/timestamp'
 
-          pull_strategy: '--rebase'
 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
