@@ -1,42 +1,24 @@
-# This is a basic workflow to help you get started with Actions
+name: rebuild
 
-name: CI
-       
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the main branch
 on:
+  pull_request:
   push:
-    branches: [ main ]
+    branches:
+      - "main"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    
-    # The type of runner that the job will run on
+  rebuild:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo `date` > /home/runner/work/workflowtest/workflowtest/timestamp
-
-      - uses: EndBug/add-and-commit@v5
-        with:
-          add: /home/runner/work/workflowtest/workflowtest/timestamp
-        
+    - name: Run rebuild
+      run: echo `date` > timestamp
 
 
-          cwd: '$GITHUB_WORKSPACE'
-
-          message: 'add /home/runner/work/workflowtest/workflowtest/timestamp'
-          branch: test
-
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Apply rebuild changes
