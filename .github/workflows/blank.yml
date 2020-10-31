@@ -34,7 +34,5 @@ jobs:
 
           message: 'add timestamp'
 
-          pull_strategy: '--rebase'
-
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this line unchanged
